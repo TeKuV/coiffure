@@ -17,7 +17,8 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name',
+        'nom',
+        'prenom',
         'email',
         'password',
     ];
@@ -40,4 +41,19 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function role(){
+        return Role::select('roles.*')
+                        ->join('users', 'users.id_role', '=', 'roles.id')
+                        ->where('users.id', $this->id)
+                        ->get();
+    }
+
+    public function posts(){
+        return Post::select('posts.*')
+                   ->join('roles', 'roles.id', '=', 'posts.id_role')
+                   ->join('users', 'users.id_role', '=', 'roles.id')
+                   ->where('users.id', $this->id)
+                   ->get();
+    }
 }

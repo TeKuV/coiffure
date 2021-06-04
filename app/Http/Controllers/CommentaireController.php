@@ -35,7 +35,14 @@ class CommentaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'email' => ['required', 'email'],
+            'message' => ['required']
+        ]);
+
+        Commentaire::create($request->all());
+
+        return redirect()->route('articles.show', $request->article);
     }
 
     /**
@@ -80,6 +87,8 @@ class CommentaireController extends Controller
      */
     public function destroy(Commentaire $commentaire)
     {
-        //
+        $commentaire->delete();
+
+        return redirect()->route('articles.index')->with('success', "Commets deleted successfully !");
     }
 }

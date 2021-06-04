@@ -14,7 +14,9 @@ class PromotionController extends Controller
      */
     public function index()
     {
-        //
+        $promotions = Promotion::all();
+
+        return view('pormotions.index', compact('promotions'));
     }
 
     /**
@@ -24,7 +26,7 @@ class PromotionController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -46,7 +48,7 @@ class PromotionController extends Controller
      */
     public function show(Promotion $promotion)
     {
-        //
+        // 
     }
 
     /**
@@ -80,6 +82,8 @@ class PromotionController extends Controller
      */
     public function destroy(Promotion $promotion)
     {
-        //
+        $promotion->delete();
+
+        return view();
     }
 }

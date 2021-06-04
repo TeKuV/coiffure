@@ -15,7 +15,9 @@ class CreateCoiffuresTable extends Migration
     {
         Schema::create('coiffures', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_post');
+            $table->string('intitutle')->nullable();
+            $table->string('path');
+            $table->foreignId('id_post')->nullable();
             $table->unsignedInteger('id_promotion')->nullable();
             
             $table->foreign('id_post')->references('id')->on('posts')->onDelete('cascade')->onUpdate('cascade');

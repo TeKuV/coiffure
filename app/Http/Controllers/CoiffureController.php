@@ -14,7 +14,7 @@ class CoiffureController extends Controller
      */
     public function index()
     {
-        //
+        return view('coiffures.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class CoiffureController extends Controller
      */
     public function create()
     {
-        //
+        return view('coiffures.create');
     }
 
     /**
@@ -35,7 +35,10 @@ class CoiffureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Coiffure::create($request->all());
+
+        return redirect()->route('coiffures.index')
+                         ->with('success', 'Coiffure added successfuly !');
     }
 
     /**
@@ -46,7 +49,7 @@ class CoiffureController extends Controller
      */
     public function show(Coiffure $coiffure)
     {
-        //
+        return view('coiffures.show', compact('coiffure'));
     }
 
     /**
@@ -57,7 +60,7 @@ class CoiffureController extends Controller
      */
     public function edit(Coiffure $coiffure)
     {
-        //
+        return view('coiffures.edit', compact('coiffure'));
     }
 
     /**
@@ -69,7 +72,10 @@ class CoiffureController extends Controller
      */
     public function update(Request $request, Coiffure $coiffure)
     {
-        //
+        $coiffure->update($request->all());
+
+        return redirect()->route('coiffures.show', $coiffure->id)
+                        ->with('success', 'La coiffure a été mis a jour !');
     }
 
     /**
@@ -80,6 +86,9 @@ class CoiffureController extends Controller
      */
     public function destroy(Coiffure $coiffure)
     {
-        //
+        $coiffure->delete();
+
+        return redirect()->route('coiffures.index')
+                         ->with('success', "Coiffure supprimé avec succès !");
     }
 }

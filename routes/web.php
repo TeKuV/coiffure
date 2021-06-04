@@ -28,4 +28,12 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+// Autorisations
+Route::resource('users', App\Http\Controllers\Autorisations\UserController::class);
+
+Route::resource('roles', App\Http\Controllers\Autorisations\RoleController::class);
+
+Route::resource('permissions', App\Http\Controllers\Autorisations\PermissionController::class);
+
+
 require __DIR__.'/auth.php';

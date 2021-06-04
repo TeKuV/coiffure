@@ -16,7 +16,7 @@ class CreatePostsTable extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->string('intitule');
-            $table->foreignId('id_role');
+            $table->unsignedInteger('id_role');
             $table->foreignId('id_categorie');
 
             $table->foreign('id_role')->references('id')->on('roles')->onDelete('cascade')->onUpdate('cascade');
