@@ -29,6 +29,8 @@ Route::resource('permissions', App\Http\Controllers\Autorisations\PermissionCont
 // ------------------
 Route::resource('coiffures', App\Http\Controllers\CoiffureController::class);
 
+Route::get('catalogues', [App\Http\Controllers\CatalogueController::class, 'index'])->name('catalogues.index');
+
 Route::resource('categories', App\Http\Controllers\CategoryController::class);
 
 Route::get('profiles', [App\Http\Controllers\ProfileController::class, 'show'])->name('profiles.show');
@@ -39,21 +41,18 @@ Route::put('profiles/{user}', [App\Http\Controllers\ProfileController::class, 'u
 
 Route::delete('profiles/{user}', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profiles.destroy');
 
+// App 
+
+Route::get('/', [App\Http\Controllers\AppController::class, 'home'])->name('home');
+
 // a traiter
 
-Route::get('/', function () {
-    return view('pages.accueil');
-});
 Route::get('/about', function () {
     return view('pages.about');
 });
 
 Route::get('/service', function () {
     return view('pages.departement');
-});
-
-Route::get('/catalogue', function () {
-    return view('pages.catalogue');
 });
 
 Route::get('/Blog', function () {

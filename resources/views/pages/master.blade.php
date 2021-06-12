@@ -4,6 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link rel="icon" href="{{asset('images/logo.png')}}">
+
         <title>Coiffure</title>
 
         <!-- Fonts -->
@@ -65,7 +67,7 @@
                   <li class="nav-item active"><a href="{{ url('/')}}" class="nav-link">Accueil</a></li>
                   <li class="nav-item"><a  href="{{ url('/about')}}" class="nav-link">À propos de nous</a></li>
                   {{--<li class="nav-item"><a href="/service" class="nav-link">Mes services</a></li>--}}
-                  <li class="nav-item"><a href="/catalogue" class="nav-link">Catalogue</a></li>
+                  <li class="nav-item"><a href="{{route('catalogues.index')}}" class="nav-link">Catalogue</a></li>
                   {{-- <li class="nav-item"><a href="/Blog" class="nav-link">Blog</a></li> --}}
                   <li class="nav-item"><a href="/Contact" class="nav-link">Contact</a></li>
                   {{-- <li class="nav-item cta"><a href="contact.html" class="nav-link" data-toggle="modal" data-target="#modalAppointment"><span>Make an Appointment</span></a></li> --}}
