@@ -1,9 +1,15 @@
 <?php
 
+// require 'vendor/autoload.php';  
+
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Coiffure;
+use App\Models\Image;
 use Illuminate\Http\Request;
+
+use Intervention\Image\ImageManagerStatic as ImageManager;
 
 class CoiffureController extends Controller
 {
@@ -14,7 +20,9 @@ class CoiffureController extends Controller
      */
     public function index()
     {
-        return view('coiffures.index');
+        $coiffures = Coiffure::all();
+
+        return view('coiffures.index', compact('coiffures'));
     }
 
     /**
@@ -24,7 +32,9 @@ class CoiffureController extends Controller
      */
     public function create()
     {
-        return view('coiffures.create');
+        $categories = Category::all();
+
+        return view('coiffures.create', compact('categories'));
     }
 
     /**
@@ -35,7 +45,43 @@ class CoiffureController extends Controller
      */
     public function store(Request $request)
     {
-        Coiffure::create($request->all());
+        $request->validate([
+            'intitule' => ['required', 'unique:coiffures'],
+        ]);
+        $coiffure = new Coiffure([
+            'intitule' => $request->intitule,
+            'details' => $request->details,
+            'prix' => $request->prix,
+            'id_category' => $request->category
+        ]);
+
+        $coiffure->save();
+
+        if ($request->hasFile('images')) {
+            $medias = $request->file('images');
+            
+            foreach($medias as $i => $media){
+                
+                $destinationPath = "uploads/images/";
+                $extention = $media->getClientOriginalExtension();
+
+                $profileImage = date('YmdHis') . $i ."." . $extention;
+                $media->move($destinationPath, $profileImage);
+                $image_name = "$profileImage";
+                $path = $destinationPath . $image_name;
+
+                if(ImageManager::make($path)->resize(100, 100)){
+                    $image = new Image();
+                    $image->path = $path;
+                    $image->id_coiffure = $coiffure->id;
+                    $image->save();
+                }
+
+                
+            
+            }
+            // dd($tab_name);
+        }
 
         return redirect()->route('coiffures.index')
                          ->with('success', 'Coiffure added successfuly !');

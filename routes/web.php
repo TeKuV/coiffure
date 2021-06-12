@@ -15,15 +15,6 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-});
-
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -35,5 +26,42 @@ Route::resource('roles', App\Http\Controllers\Autorisations\RoleController::clas
 
 Route::resource('permissions', App\Http\Controllers\Autorisations\PermissionController::class);
 
+// ------------------
+Route::resource('coiffures', App\Http\Controllers\CoiffureController::class);
+
+Route::resource('categories', App\Http\Controllers\CategoryController::class);
+
+Route::get('profiles', [App\Http\Controllers\ProfileController::class, 'show'])->name('profiles.show');
+
+Route::get('profiles/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profiles.edit');
+
+Route::put('profiles/{user}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profiles.update');
+
+Route::delete('profiles/{user}', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profiles.destroy');
+
+// a traiter
+
+Route::get('/', function () {
+    return view('pages.accueil');
+});
+Route::get('/about', function () {
+    return view('pages.about');
+});
+
+Route::get('/service', function () {
+    return view('pages.departement');
+});
+
+Route::get('/catalogue', function () {
+    return view('pages.catalogue');
+});
+
+Route::get('/Blog', function () {
+    return view('pages.blog');
+});
+
+Route::get('/Contact', function () {
+    return view('pages.contact');
+});
 
 require __DIR__.'/auth.php';

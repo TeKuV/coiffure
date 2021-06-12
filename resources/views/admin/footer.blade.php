@@ -3,6 +3,6 @@
         10GB of <strong>250GB</strong> Free.
     </div>
     <div>
-        <strong>Copyright</strong> TEUGA Ulrich &copy; 2020
+        <strong>Copyright</strong> MB &copy; 2021
     </div>
 </div>

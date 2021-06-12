@@ -6,8 +6,8 @@
                 <div class="dropdown profile-element">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                         <span class="clear"> 
-                            <span class="block m-t-xs"> 
-                                <strong class="font-bold">Eleve</strong>
+                            <span class="block m-t-xs">
+                                <strong class="font-bold">Boss</strong>
                             </span> 
                             {{-- <span class="text-muted text-xs block">{{Auth::user()->nom}} {{Auth::user()->prenom}}<b class="caret"></b></span>  --}}
                         </span>
@@ -18,16 +18,42 @@
                     </ul>
                 </div>
                 <div class="logo-element">
-                    {{config('app.name')}}
+                    MB
                 </div>
             </li>
             <li>
-                <a href="#"><i class="fa fa-th-large"></i> <span class="nav-label">Tableau de bord</span></a>
+                <a href="#"><i class="fa fa-tachometer"></i> <span class="nav-label">Dashboard</span></a>
+            </li>
+            <li>
+                <a href="{{route('coiffures.index')}}"><i class="fa fa-scissors"></i> <span class="nav-label">Hairstyle</span></a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-cogs"></i> <span class="nav-label"> Manage </span><span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level collapse">
+
+                    <li>
+                        <a href="#">General <span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a href="#"> Icon </a>
+                            </li>
+                            <li>
+                                <a href="#"> Carousel </a>
+                            </li>
+                            <li>
+                                <a href="#">Third Level Item</a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="{{Request::is('users.index') ? 'active' : 'null'}}"><a href="{{route('profiles.show')}}">Account</a></li>
+                    
+                </ul>
             </li>
             <li>
                 <a href=""><i class="fa fa-lock"></i> <span class="nav-label">Autorisations</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse">
-                    <li class="{{Request::is('users.index') ? 'active' : 'null'}}"><a href="{{route('users.index')}}">Utilisateurs</a></li>
+                    <li class="{{Request::is('users.index') ? 'active' : 'null'}}"><a href="{{route('users.index')}}">Users</a></li>
                     <li class="{{Request::is('roles.index') ? 'active' : 'null'}}"><a href="{{route('roles.index')}}">Roles</a></li>
                     <li class="{{Request::is('permissions.index') ? 'active' : 'null'}}"><a href="{{route('permissions.index')}}">Permissions</a></li>
                 </ul>
