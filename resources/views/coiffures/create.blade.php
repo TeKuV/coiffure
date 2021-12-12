@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('head')
-    <title>{{config('appname', 'Utek-Template')}}</title>
+
 @endsection
 
 @section('content')
@@ -71,7 +71,7 @@
 
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">Images</label>
-                                    
+
                                     <div class="col-sm-10">
                                         <input type="file" name="images[]" id="docs" class="form-control" multiple accept="image/jpeg, image/png">
                                         @error('file')
@@ -91,7 +91,7 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
         @include('admin.footer')
     </div>

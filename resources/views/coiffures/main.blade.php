@@ -1,7 +1,7 @@
 @extends('admin.master')
-    
+
 @section('head')
-    <title>{{config('appname', 'Utek-Template')}}</title>
+
 @endsection
 
 @section('content')
@@ -32,7 +32,7 @@
                     </div>
                 </div>
                 <div class="col-lg-2">
-            
+
                 </div>
             </div>
 

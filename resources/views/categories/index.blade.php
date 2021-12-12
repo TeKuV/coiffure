@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('head')
-    <title>{{config('appname', 'Utek-Template')}}</title>
+
 @endsection
 
 @section('content')
@@ -65,7 +65,7 @@
                             <td>{{$categorie->details}}</td>
                             <td class="center">
                                 <form action="{{ route('categories.destroy',$categorie->id) }}" method="POST">
-        
+
                                     <a class="btn btn-white" href="{{ route('categories.edit',$categorie->id) }}"><i class="fa fa-edit"></i></a>
 
                                     @csrf

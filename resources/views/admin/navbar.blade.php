@@ -5,10 +5,10 @@
             <li class="nav-header">
                 <div class="dropdown profile-element">
                     <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                        <span class="clear"> 
+                        <span class="clear">
                             <span class="block m-t-xs">
                                 <strong class="font-bold">Boss</strong>
-                            </span> 
+                            </span>
                             {{-- <span class="text-muted text-xs block">{{Auth::user()->nom}} {{Auth::user()->prenom}}<b class="caret"></b></span>  --}}
                         </span>
                     </a>
@@ -40,14 +40,11 @@
                             <li>
                                 <a href="#"> Carousel </a>
                             </li>
-                            <li>
-                                <a href="#">Third Level Item</a>
-                            </li>
 
                         </ul>
                     </li>
-                    <li class="{{Request::is('users.index') ? 'active' : 'null'}}"><a href="{{route('profiles.show')}}">Account</a></li>
-                    
+                    {{-- <li class="{{Request::is('users.index') ? 'active' : 'null'}}"><a href="{{route('profiles.show')}}">Account</a></li> --}}
+
                 </ul>
             </li>
             <li>
@@ -58,7 +55,7 @@
                     <li class="{{Request::is('permissions.index') ? 'active' : 'null'}}"><a href="{{route('permissions.index')}}">Permissions</a></li>
                 </ul>
             </li>
-            
+
         </ul>
 
     </div>

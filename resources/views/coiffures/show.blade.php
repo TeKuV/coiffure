@@ -1,7 +1,7 @@
 @extends('coiffures.main')
-    
+
 @section('head')
-    <title>{{config('appname', 'Utek-Template')}}</title>
+
     <link href="{{asset('admin/css/plugins/slick/slick.css')}}" rel="stylesheet">
     <link href="{{asset('admin/css/plugins/slick/slick-theme.css')}}" rel="stylesheet">
 @endsection
@@ -26,7 +26,7 @@
                                         </div>
                                     </div>
                                     @endforeach
-                                    
+
 
 
                                 </div>
@@ -38,7 +38,6 @@
                                     {{$coiffure->intitule}}
                                 </h2>
                                 <div class="m-t-md">
-                                    <h2 class="product-main-price">$ {{$coiffure->prix}} <small class="text-muted">Exclude Tax</small> </h2>
                                 </div>
                                 <hr>
 
@@ -54,7 +53,7 @@
                                             <input type="submit" class="btn btn-danger btn-sm" value="Delete">
                                         </div>
                                     </form>
-                                    
+
                                 </div>
 
 

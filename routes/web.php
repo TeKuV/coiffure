@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
+use App\Http\Controllers\AppController;
+use App\Http\Controllers\CoiffureController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,52 +15,36 @@ use Inertia\Inertia;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
-// Autorisations
-Route::resource('users', App\Http\Controllers\Autorisations\UserController::class);
+Route::resource('users', UserController::class);
 
-Route::resource('roles', App\Http\Controllers\Autorisations\RoleController::class);
+Route::resource('roles', RoleController::class);
 
-Route::resource('permissions', App\Http\Controllers\Autorisations\PermissionController::class);
+Route::resource('permissions', PermissionController::class);
 
 // ------------------
-Route::resource('coiffures', App\Http\Controllers\CoiffureController::class);
 
-Route::get('catalogues', [App\Http\Controllers\CatalogueController::class, 'index'])->name('catalogues.index');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('coiffures', CoiffureController::class);
 
-Route::resource('categories', App\Http\Controllers\CategoryController::class);
-
-Route::get('profiles', [App\Http\Controllers\ProfileController::class, 'show'])->name('profiles.show');
-
-Route::get('profiles/edit', [App\Http\Controllers\ProfileController::class, 'edit'])->name('profiles.edit');
-
-Route::put('profiles/{user}', [App\Http\Controllers\ProfileController::class, 'update'])->name('profiles.update');
-
-Route::delete('profiles/{user}', [App\Http\Controllers\ProfileController::class, 'destroy'])->name('profiles.destroy');
-
-// App 
-
-Route::get('/', [App\Http\Controllers\AppController::class, 'home'])->name('home');
-
-// a traiter
-
-Route::get('/about', function () {
-    return view('pages.about');
+    Route::get('hairstyles/all', [AppController::class, 'catalog'])->name('catalog');
 });
 
-Route::get('/service', function () {
-    return view('pages.departement');
-});
+// App
 
-Route::get('/Blog', function () {
-    return view('pages.blog');
-});
+Route::get('/', [AppController::class, 'welcome'])->name('welcome');
 
-Route::get('/Contact', function () {
-    return view('pages.contact');
-});
+Route::get('/about', [AppController::class, 'aboutUs'])->name('about');
+
+Route::get('/contact-us', [AppController::class, 'contactUs'])->name('contacts.index');
+
+Route::post('/contact-us', [AppController::class, 'sendMail'])->name('contact.send');
 
 require __DIR__.'/auth.php';

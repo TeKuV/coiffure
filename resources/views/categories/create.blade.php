@@ -1,7 +1,7 @@
 @extends('admin.master')
 
 @section('head')
-    <title>{{config('appname', 'Utek-Template')}}</title>
+
 @endsection
 
 @section('content')
@@ -59,12 +59,12 @@
                     </div>
                 </div>
             </div>
-           
+
         </div>
         @include('admin.footer')
     </div>
 @endsection
 
 @section('bottom')
-    
+
 @endsection
